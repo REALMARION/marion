@@ -9,7 +9,7 @@ const firebaseConfig = {
     projectId: "web-marion",
     storageBucket: "web-marion.appspot.com",
     messagingSenderId: "544839061334",
-    appId: "YOUR_APP_ID"
+    appId: "1:544839061334:web:c775031d2f45e4ac24d0f7"
 };
 
 // Initialize Firebase
