@@ -117,3 +117,34 @@ firebase.auth().onAuthStateChanged((user) => {
         showLogin();
     }
 });
+
+document.getElementById('registerForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    console.log('Register form submitted');
+    
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('registerEmail').value;
+    const password = document.getElementById('registerPassword').value;
+
+    console.log('Username:', username, 'Email:', email);
+
+    try {
+        // Create a new user with email and password
+        const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+        console.log('User created:', userCredential);
+        const user = userCredential.user;
+
+        // Store user info in Firestore
+        await firebase.firestore().collection('users').doc(user.uid).set({
+            username: username,
+            email: email
+        });
+
+        // Show welcome message
+        showWelcome(user);
+    } catch (error) {
+        console.error("Error signing up:", error);
+        alert("Error signing up: " + error.message);
+    }
+});
+
