@@ -2,116 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MARION.com</title>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Signup & Login Page</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js"></script>
+    <script src="index.js" defer></script>
 </head>
 <body>
-    <div class="wrapper">
-        <nav class="nav">
-            <div class="nav-logo">
-                <p>MARION</p>
-            </div>
-            <div class="nav-menu" id="navMenu">
-                <ul>
-                    <li><a href="#chats" class="link active">Chats</a></li>
-                    <li><a href="#servers" class="link">Servers</a></li>
-                    <li><a href="#friends" class="link">Friends</a></li>
-                    <li><a href="#download" class="link">Download</a></li>
-                </ul>
-            </div>
-            <div class="nav-button" id="navButtons">
-                <button class="btn white-btn" id="loginBtn">Sign In</button>
-                <button class="btn" id="registerBtn">Sign Up</button>
-                <button class="btn" id="logoutBtn" style="display: none;">Logout</button>
-            </div>
-            <div class="nav-menu-btn">
-                <i class="bx bx-menu" id="menuIcon"></i>
-            </div>
-        </nav>
-
-        <!-- Forms and Welcome Section -->
-        <div class="form-box">
-            <!-- Login Form -->
-            <div class="login-container" id="login">
-                <div class="top">
-                    <span>Don't have an account? <a href="#" id="showRegister">Sign Up</a></span>
-                    <header>Login</header>
-                </div>
-                <form id="loginForm">
-                    <div class="input-box">
-                        <input type="text" class="input-field" id="loginUsername" placeholder="Username or Email" required>
-                        <i class="bx bx-user"></i>
-                    </div>
-                    <div class="input-box">
-                        <input type="password" class="input-field" id="loginPassword" placeholder="Password" required>
-                        <i class="bx bx-lock-alt"></i>
-                    </div>
-                    <div class="input-box">
-                        <input type="submit" class="submit" value="Sign In">
-                    </div>
-                    <div class="two-col">
-                        <div class="one">
-                            <input type="checkbox" id="login-check">
-                            <label for="login-check"> Remember Me</label>
-                        </div>
-                        <div class="two">
-                            <label><a href="#">Forgot password?</a></label>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <!-- Registration Form -->
-            <div class="register-container" id="register">
-                <div class="top">
-                    <span>Have an account? <a href="#" id="showLogin">Login</a></span>
-                    <header>Sign Up</header>
-                </div>
-                <form id="registerForm">
-                    <div class="input-box">
-                        <input type="text" class="input-field" id="username" placeholder="Username" required>
-                        <i class="bx bx-user"></i>
-                    </div>
-                    <div class="input-box">
-                        <input type="email" class="input-field" id="registerEmail" placeholder="Email" required>
-                        <i class="bx bx-envelope"></i>
-                    </div>
-                    <div class="input-box">
-                        <input type="password" class="input-field" id="registerPassword" placeholder="Password" required>
-                        <i class="bx bx-lock-alt"></i>
-                    </div>
-                    <div class="input-box">
-                        <input type="submit" class="submit" value="Register">
-                    </div>
-                    <div class="two-col">
-                        <div class="one">
-                            <input type="checkbox" id="register-check">
-                            <label for="register-check"> Remember Me</label>
-                        </div>
-                        <div class="two">
-                            <label><a href="#">Terms & conditions</a></label>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <!-- Welcome Section -->
-            <div class="welcome-container" id="welcome" style="display: none;">
-                <header>Welcome, <span id="welcomeUsername"></span>!</header>
-                <button class="btn" id="logoutBtnWelcome">Logout</button>
-            </div>
+    <div class="container">
+        <h1>Account Management</h1>
+        <div class="form-container">
+            <h2>Sign Up</h2>
+            <input type="email" id="signupEmail" placeholder="Email" required>
+            <input type="password" id="signupPassword" placeholder="Password" required>
+            <button id="signupButton">Sign Up</button>
+            <div id="signupError" class="error-message"></div>
         </div>
-    </div>   
 
-    <!-- JavaScript File -->
-    <script src="index.js"></script>
+        <div class="form-container">
+            <h2>Login</h2>
+            <input type="email" id="loginEmail" placeholder="Email" required>
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <button id="loginButton">Log In</button>
+            <div id="loginError" class="error-message"></div>
+        </div>
+    </div>
 </body>
 </html>
