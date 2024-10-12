@@ -3,11 +3,10 @@ const firebaseConfig = {
     apiKey: "AIzaSyD13_iY4LZVgAhGhQIGJfcSm0GDh6F6Sy0",
     authDomain: "web-marion.firebaseapp.com",
     projectId: "web-marion",
-    storageBucket: "web-marion.appspot.com",
+    storageBucket: "web-marion.appspot.com"",
     messagingSenderId: "544839061334",
-    appId: "1:544839061334:web:c775031d2f45e4ac24d0f7"
+    appId: "1:544839061334:web:c775031d2f45e4ac24d0f7",
 };
-
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -47,6 +46,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     const password = document.getElementById('registerPassword').value;
 
     try {
+        // Create user with email and password
         const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
         const user = userCredential.user;
 
@@ -59,6 +59,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
         showWelcome(user);
     } catch (error) {
         console.error("Error signing up:", error);
+        alert("Error signing up: " + error.message);
     }
 });
 
@@ -74,6 +75,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         showWelcome(user);
     } catch (error) {
         console.error("Error logging in:", error);
+        alert("Error logging in: " + error.message);
     }
 });
 
