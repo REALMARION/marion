@@ -1,37 +1,36 @@
-// index.js
 
-// Console Warning Message
+
+
 console.warn('%cSTOP!', 'color: red; font-size: 40px; font-weight: bold;');
 console.log('%cDO NOT PASTE ANY CODE HERE. IT MAY STEAL YOUR ACCOUNT DETAILS!', 'color: orange; font-size: 16px;');
 
-// The rest of the JavaScript code remains unchanged.
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form');
     const signupForm = document.getElementById('signup-form');
     const switchToSignup = document.getElementById('switch-to-signup');
     const switchToLogin = document.getElementById('switch-to-login');
 
-    // Check if user is already logged in
+
     const loggedInUser = localStorage.getItem('user');
     if (loggedInUser) {
         window.location.href = 'home.html';
     }
 
-    // Handle signup form submission
+
     signupForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
         const email = document.getElementById('signup-email').value;
         const password = document.getElementById('signup-password').value;
 
-        // Save user credentials in local storage
+
         localStorage.setItem('user', JSON.stringify({ email, password }));
         
-        // Auto-login after signup
+
         window.location.href = 'home.html';
     });
 
-    // Handle login form submission
+
     loginForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
@@ -58,3 +57,31 @@ document.addEventListener('DOMContentLoaded', () => {
         loginForm.style.display = 'block';
     });
 });
+
+
+
+
+
+const connectionOverlay = document.createElement('div');
+connectionOverlay.id = 'connection-overlay';
+connectionOverlay.innerHTML = `
+    <div class="connection-message">
+        <h2>You're Offline</h2>
+        <p>Please check your internet connection.</p>
+    </div>
+`;
+document.body.appendChild(connectionOverlay);
+
+
+function updateConnectionStatus() {
+    if (navigator.onLine) {
+        connectionOverlay.style.display = 'none';
+    } else {
+        connectionOverlay.style.display = 'flex';
+    }
+}
+
+
+window.addEventListener('load', updateConnectionStatus);
+window.addEventListener('online', updateConnectionStatus);
+window.addEventListener('offline', updateConnectionStatus);
