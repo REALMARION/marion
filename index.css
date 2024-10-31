@@ -1,27 +1,36 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
+    padding: 0;
 }
 
-.container {
-    background: white;
+header {
+    background: #007BFF;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+header img {
+    height: 40px;
+    cursor: pointer;
+}
+
+.menu-hidden {
+    display: none;
+}
+
+.menu-visible {
+    display: block;
+}
+
+main {
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    text-align: center;
-}
-
-h1 {
-    color: #333;
 }
 
 form {
+    margin: 20px;
     display: flex;
     flex-direction: column;
 }
@@ -29,55 +38,16 @@ form {
 input {
     margin-bottom: 10px;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
 }
 
 button {
     padding: 10px;
-    background-color: #5cb85c;
+    background: #007BFF;
     color: white;
     border: none;
-    border-radius: 3px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #4cae4c;
-}
-
-p {
-    text-align: center;
-}
-
-span {
-    color: blue;
-    cursor: pointer;
-}
-
-/* Internet connection notification bar */
-#connection-overlay {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    color: white;
-    padding: 15px;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
-    z-index: 1000;
-    text-align: center;
-}
-
-.connection-message h2 {
-    font-size: 18px;
-    margin: 0;
-}
-
-.connection-message p {
-    font-size: 14px;
-    margin: 5px 0 0;
+    background: #0056b3;
 }
