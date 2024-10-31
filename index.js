@@ -1,6 +1,3 @@
-
-
-
 console.warn('%cSTOP!', 'color: red; font-size: 40px; font-weight: bold;');
 console.log('%cDO NOT PASTE ANY CODE HERE. IT MAY STEAL YOUR ACCOUNT DETAILS!', 'color: orange; font-size: 16px;');
 
@@ -10,12 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const switchToSignup = document.getElementById('switch-to-signup');
     const switchToLogin = document.getElementById('switch-to-login');
 
-
     const loggedInUser = localStorage.getItem('user');
     if (loggedInUser) {
         window.location.href = 'home.html';
     }
-
 
     signupForm.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -23,13 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('signup-email').value;
         const password = document.getElementById('signup-password').value;
 
-
         localStorage.setItem('user', JSON.stringify({ email, password }));
         
-
         window.location.href = 'home.html';
     });
-
 
     loginForm.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -45,22 +37,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Switch to signup form
     switchToSignup.addEventListener('click', () => {
         loginForm.style.display = 'none';
         signupForm.style.display = 'block';
     });
 
-    // Switch to login form
     switchToLogin.addEventListener('click', () => {
         signupForm.style.display = 'none';
         loginForm.style.display = 'block';
     });
 });
-
-
-
-
 
 const connectionOverlay = document.createElement('div');
 connectionOverlay.id = 'connection-overlay';
@@ -72,7 +58,6 @@ connectionOverlay.innerHTML = `
 `;
 document.body.appendChild(connectionOverlay);
 
-
 function updateConnectionStatus() {
     if (navigator.onLine) {
         connectionOverlay.style.display = 'none';
@@ -80,7 +65,6 @@ function updateConnectionStatus() {
         connectionOverlay.style.display = 'flex';
     }
 }
-
 
 window.addEventListener('load', updateConnectionStatus);
 window.addEventListener('online', updateConnectionStatus);
