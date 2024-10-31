@@ -3,31 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MARION</title>
+    <title>Home Page</title>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <div class="container">
-        <img src="logo.png" alt="Marion Logo" class="logo"> <!-- Logo added here -->
-        <h1>Welcome to Marion</h1>
-        <div id="form-container">
-            <form id="login-form">
-                <h2>Login</h2>
-                <input type="email" id="login-email" placeholder="Email" required>
-                <input type="password" id="login-password" placeholder="Password" required>
-                <button type="submit">Login</button>
-                <p>Don't have an account? <span id="switch-to-signup">Signup here</span></p>
-            </form>
-
-            <form id="signup-form" style="display:none;">
-                <h2>Signup</h2>
-                <input type="email" id="signup-email" placeholder="Email" required>
-                <input type="password" id="signup-password" placeholder="Password" required>
-                <button type="submit">Signup</button>
-                <p>Already have an account? <span id="switch-to-login">Login here</span></p>
-            </form>
+    <header>
+        <img src="images/Logo.png" alt="Logo" id="logo" onclick="openMenu()">
+        <button id="settingsBtn">Settings</button>
+        <div id="menu" class="menu-hidden">
+            <button onclick="location.href='settings.html'">Settings</button>
+            <button onclick="logout()">Logout</button>
         </div>
-    </div>
+    </header>
+    <main>
+        <h1>Welcome to the Home Page!</h1>
+        <p>This is where your content goes.</p>
+    </main>
+    <script src="firebase-config.js"></script>
     <script src="index.js"></script>
 </body>
 </html>
