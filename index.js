@@ -1,5 +1,10 @@
 // index.js
 
+// Console Warning Message
+console.warn('%cSTOP!', 'color: red; font-size: 40px; font-weight: bold;');
+console.log('%cDO NOT PASTE ANY CODE HERE. IT MAY STEAL YOUR ACCOUNT DETAILS!', 'color: orange; font-size: 16px;');
+
+// The rest of the JavaScript code remains unchanged.
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form');
     const signupForm = document.getElementById('signup-form');
