@@ -1,3 +1,16 @@
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
+};
+
+
+const app = firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
 console.warn('%cSTOP!', 'color: red; font-size: 40px; font-weight: bold;');
 console.log('%cDO NOT PASTE ANY CODE HERE. IT MAY STEAL YOUR ACCOUNT DETAILS!', 'color: orange; font-size: 16px;');
 
@@ -14,27 +27,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     signupForm.addEventListener('submit', function(event) {
         event.preventDefault();
-
         const email = document.getElementById('signup-email').value;
         const password = document.getElementById('signup-password').value;
 
-        localStorage.setItem('user', JSON.stringify({ email, password }));
-        
-        window.location.href = 'home.html';
+        auth.createUserWithEmailAndPassword(email, password)
+            .then(() => {
+                localStorage.setItem('user', JSON.stringify({ email }));
+                window.location.href = 'home.html';
+            })
+            .catch((error) => {
+                alert(error.message);
+            });
     });
 
     loginForm.addEventListener('submit', function(event) {
         event.preventDefault();
-
         const email = document.getElementById('login-email').value;
         const password = document.getElementById('login-password').value;
 
-        const storedUser = JSON.parse(localStorage.getItem('user'));
-        if (storedUser && storedUser.email === email && storedUser.password === password) {
-            window.location.href = 'home.html';
-        } else {
-            alert('Invalid email or password.');
-        }
+        auth.signInWithEmailAndPassword(email, password)
+            .then(() => {
+                localStorage.setItem('user', JSON.stringify({ email }));
+                window.location.href = 'home.html';
+            })
+            .catch((error) => {
+                alert('Invalid email or password.');
+            });
     });
 
     switchToSignup.addEventListener('click', () => {
