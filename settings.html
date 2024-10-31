@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <h2>Settings</h2>
+    <button onclick="logout()">Logout</button>
+    <h3>Profile Picture</h3>
+    <input type="file" id="profilePic" accept="image/*">
+    <button onclick="uploadProfilePicture()">Upload Picture</button>
+
+    <h3>Enable 2-Step Verification</h3>
+    <button onclick="enable2StepVerification()">Enable 2-Step</button>
+
+    <script src="firebase-config.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
