@@ -1,150 +1,55 @@
-// Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyD13_iY4LZVgAhGhQIGJfcSm0GDh6F6Sy0",
-    authDomain: "web-marion.firebaseapp.com",
-    projectId: "web-marion",
-    storageBucket: "web-marion.appspot.com",
-    messagingSenderId: "544839061334",
-    appId: "1:544839061334:web:c775031d2f45e4ac24d0f7",
-};
+// index.js
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
+    const switchToSignup = document.getElementById('switch-to-signup');
+    const switchToLogin = document.getElementById('switch-to-login');
 
-// DOM elements
-const navButtons = document.getElementById('navButtons');
-const loginBtn = document.getElementById('loginBtn');
-const registerBtn = document.getElementById('registerBtn');
-const logoutBtn = document.getElementById('logoutBtn');
-const logoutBtnWelcome = document.getElementById('logoutBtnWelcome');
-const loginContainer = document.getElementById('login');
-const registerContainer = document.getElementById('register');
-const welcomeContainer = document.getElementById('welcome');
-const usernameDisplay = document.getElementById('welcomeUsername');
-
-// Show Register Form
-document.getElementById('showRegister').addEventListener('click', () => {
-    loginContainer.style.opacity = '0';
-    loginContainer.style.transform = 'translateX(100%)';
-    registerContainer.style.opacity = '1';
-    registerContainer.style.transform = 'translateX(0)';
-});
-
-// Show Login Form
-document.getElementById('showLogin').addEventListener('click', () => {
-    registerContainer.style.opacity = '0';
-    registerContainer.style.transform = 'translateX(100%)';
-    loginContainer.style.opacity = '1';
-    loginContainer.style.transform = 'translateX(0)';
-});
-
-// Sign Up
-document.getElementById('registerForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const username = document.getElementById('username').value;
-    const email = document.getElementById('registerEmail').value;
-    const password = document.getElementById('registerPassword').value;
-
-    try {
-        // Create user with email and password
-        const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
-        const user = userCredential.user;
-
-        // Save username to Firestore
-        await firebase.firestore().collection('users').doc(user.uid).set({
-            username: username,
-            email: email
-        });
-
-        showWelcome(user);
-    } catch (error) {
-        console.error("Error signing up:", error);
-        alert("Error signing up: " + error.message);
+    // Check if user is already logged in
+    const loggedInUser = localStorage.getItem('user');
+    if (loggedInUser) {
+        window.location.href = 'home.html';
     }
+
+    // Handle signup form submission
+    signupForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const email = document.getElementById('signup-email').value;
+        const password = document.getElementById('signup-password').value;
+
+        // Save user credentials in local storage
+        localStorage.setItem('user', JSON.stringify({ email, password }));
+        
+        // Auto-login after signup
+        window.location.href = 'home.html';
+    });
+
+    // Handle login form submission
+    loginForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+        if (storedUser && storedUser.email === email && storedUser.password === password) {
+            window.location.href = 'home.html';
+        } else {
+            alert('Invalid email or password.');
+        }
+    });
+
+    // Switch to signup form
+    switchToSignup.addEventListener('click', () => {
+        loginForm.style.display = 'none';
+        signupForm.style.display = 'block';
+    });
+
+    // Switch to login form
+    switchToLogin.addEventListener('click', () => {
+        signupForm.style.display = 'none';
+        loginForm.style.display = 'block';
+    });
 });
-
-// Sign In
-document.getElementById('loginForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('loginUsername').value;
-    const password = document.getElementById('loginPassword').value;
-
-    try {
-        const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
-        const user = userCredential.user;
-        showWelcome(user);
-    } catch (error) {
-        console.error("Error logging in:", error);
-        alert("Error logging in: " + error.message);
-    }
-});
-
-// Logout
-logoutBtn.addEventListener('click', async () => {
-    await firebase.auth().signOut();
-    showLogin();
-});
-
-// Logout from welcome screen
-logoutBtnWelcome.addEventListener('click', async () => {
-    await firebase.auth().signOut();
-    showLogin();
-});
-
-// Show welcome screen
-async function showWelcome(user) {
-    const userDoc = await firebase.firestore().collection('users').doc(user.uid).get();
-    const username = userDoc.data().username;
-
-    usernameDisplay.textContent = username;
-    loginContainer.style.display = 'none';
-    registerContainer.style.display = 'none';
-    welcomeContainer.style.display = 'flex';
-}
-
-// Show login screen
-function showLogin() {
-    loginContainer.style.display = 'flex';
-    registerContainer.style.display = 'none';
-    welcomeContainer.style.display = 'none';
-}
-
-// Auth state observer
-firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-        showWelcome(user);
-    } else {
-        showLogin();
-    }
-});
-
-document.getElementById('registerForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    console.log('Register form submitted');
-    
-    const username = document.getElementById('username').value;
-    const email = document.getElementById('registerEmail').value;
-    const password = document.getElementById('registerPassword').value;
-
-    console.log('Username:', username, 'Email:', email);
-
-    try {
-        // Create a new user with email and password
-        const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
-        console.log('User created:', userCredential);
-        const user = userCredential.user;
-
-        // Store user info in Firestore
-        await firebase.firestore().collection('users').doc(user.uid).set({
-            username: username,
-            email: email
-        });
-
-        // Show welcome message
-        showWelcome(user);
-    } catch (error) {
-        console.error("Error signing up:", error);
-        alert("Error signing up: " + error.message);
-    }
-});
-
