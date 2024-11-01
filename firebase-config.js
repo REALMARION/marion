@@ -1,3 +1,6 @@
+
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 const firebaseConfig = {
   apiKey: "AIzaSyD6b325OWWeXmDWi3qFGXHa1AmS-uDE3Zw",
   authDomain: "marion-server.firebaseapp.com",
