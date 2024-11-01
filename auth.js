@@ -1,10 +1,10 @@
-function signup() {
-    const email = document.getElementById('signup-email').value;
-    const password = document.getElementById('signup-password').value;
+function register() {
+    const email = document.getElementById('register-email').value;
+    const password = document.getElementById('register-password').value;
 
     auth.createUserWithEmailAndPassword(email, password)
         .then(() => {
-            window.location.href = 'index.html';
+            window.location.href = 'home.html';
         })
         .catch((error) => {
             console.error("Error signing up:", error.message);
@@ -17,19 +17,9 @@ function login() {
 
     auth.signInWithEmailAndPassword(email, password)
         .then(() => {
-            window.location.href = 'index.html';
+            window.location.href = 'home.html';
         })
         .catch((error) => {
             console.error("Error logging in:", error.message);
         });
-}
-
-function logout() {
-    auth.signOut().then(() => {
-        window.location.href = 'login.html';
-    });
-}
-
-function setupTwoStepVerification() {
-    const email = auth.currentUser.email;
 }
