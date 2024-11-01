@@ -2,24 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-    <link rel="stylesheet" href="index.css">
+    <title>Home - MARION</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <img src="images/Logo.png" alt="Logo" id="logo" onclick="openMenu()">
-        <button id="settingsBtn">Settings</button>
-        <div id="menu" class="menu-hidden">
-            <button onclick="location.href='settings.html'">Settings</button>
-            <button onclick="logout()">Logout</button>
-        </div>
-    </header>
-    <main>
-        <h1>Welcome to the Home Page!</h1>
-        <p>This is where your content goes.</p>
-    </main>
+    <div id="home-page">
+        <img src="Logo.png" id="logo" alt="Logo" onclick="openMenu()">
+        <h1>Welcome, <span id="username"></span></h1>
+        <button id="settings-icon" onclick="window.location.href='settings.html'">Settings</button>
+    </div>
     <script src="firebase-config.js"></script>
-    <script src="index.js"></script>
+    <script src="auth.js"></script>
 </body>
 </html>
