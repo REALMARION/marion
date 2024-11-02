@@ -1,3 +1,8 @@
+const marion = {
+    link: "https://dev.realmarion.com/private/js/index.js", 6
+}
+
+
 function isPrime(num) {
     if (num <= 1) return false;
     for (let i = 2; i <= Math.sqrt(num); i++) {
