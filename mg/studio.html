@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marion Games - Studio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-creation">
+        <h1>Create a New Game</h1>
+        <input type="text" id="game-title" placeholder="Game Title" required />
+        <textarea id="game-description" placeholder="Description"></textarea>
+        <div id="game-assets">
+            <h2>Game Assets</h2>
+            <input type="file" id="upload-assets" multiple />
+        </div>
+        <button id="save-game">Save Game</button>
+        <div id="game-management">
+            <h1>Your Games</h1>
+            <div id="games-list"></div>
+        </div>
+    </div>
+    <script src="firebase.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
