@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marion Games - Sign Up</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Sign Up - Marion Games</title>
 </head>
 <body>
-    <div id="signup-page">
+    <div class="container">
         <h1>Sign Up</h1>
-        <form id="signup-form">
-            <input type="text" id="reg-username" placeholder="Username" required>
-            <input type="email" id="reg-email" placeholder="Email" required>
-            <input type="password" id="reg-password" placeholder="Password" required>
-            <button type="submit">Sign Up</button>
-        </form>
-        <a href="login.html">Already have an account? Login here</a>
+        <input type="email" id="signup-email" placeholder="Email" required>
+        <input type="password" id="signup-password" placeholder="Password" required>
+        <button id="signup-btn">Create Account</button>
+        <p>Already have an account? <a href="index.html">Login</a></p>
     </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
     <script src="firebase.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
+
